@@ -7,6 +7,7 @@ const R = require('ramda')
  * Or grep the test names?
  *
  * TODO: make this function optionally async
+ * TODO: how to get to the original Cypress CLI or env values?
  */
 const pickTests = (filename, foundTests) => {
   // only leave some of the tests, picking by name
