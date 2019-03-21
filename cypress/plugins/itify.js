@@ -3,31 +3,33 @@
 const debug = require('debug')('itify')
 const through = require('through')
 const pluralize = require('pluralize')
-const { findTests } = require('./find-tests')
+const specParser = require('./spec-parser')
 
 const formatTestName = parts => ' - ' + parts.join(' / ')
 
+const formatTestNames = foundTests =>
+  foundTests.map(formatTestName).join('\n') + '\n'
+
 function process (pickTests, source) {
-  // console.log('---processing')
+  // console.log('---source')
   // console.log(source)
-  const foundTests = findTests(source)
+  const foundTests = specParser.findTests(source)
   if (!foundTests.length) {
     return source
   }
 
-  console.log('Found %s', pluralize('test', foundTests.length, true))
-  console.log(foundTests.map(formatTestName).join('\n'))
-  console.log()
+  debug('Found %s', pluralize('test', foundTests.length, true))
+  debug(formatTestNames(foundTests))
 
   const testNamesToRun = pickTests(foundTests)
-  console.log(
-    'Will only run %s',
-    pluralize('test', testNamesToRun.length, true)
-  )
-  console.log(foundTests.map(formatTestName).join('\n'))
-  console.log()
+  debug('Will only run %s', pluralize('test', testNamesToRun.length, true))
+  debug(formatTestNames(testNamesToRun))
 
-  return source
+  const processed = specParser.skipTests(source, testNamesToRun)
+  // console.log('---processed')
+  // console.log(processed)
+
+  return processed
 }
 
 // good example of a simple Browserify transform is

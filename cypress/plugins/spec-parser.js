@@ -1,6 +1,6 @@
 const falafel = require('falafel')
-const fs = require('fs')
 const R = require('ramda')
+const debug = require('debug')('itify')
 
 const isTestBlock = name => node => {
   return (
@@ -78,8 +78,9 @@ const findTests = source => {
       // console.log('found test', testName)
       foundTestNames.push(testName)
     }
-
     // TODO: handle it.only and it.skip
+    // or should it.only disable filtering?
+
     // else if (isItOnly(node)) {
     //   const testName = [getItsName(node)]
     //   console.log('found it.only', testName)
@@ -97,6 +98,43 @@ const findTests = source => {
   return foundTestNames
 }
 
+const skipTests = (source, leaveTests) => {
+  const onNode = node => {
+    // console.log(node)
+
+    if (isIt(node)) {
+      const names = [getItsName(node)]
+      findSuites(node, names)
+      // we were searching from inside out, thus need to revert the names
+      const testName = names.reverse()
+      // console.log('found test', testName)
+      // foundTestNames.push(testName)
+      const shouldLeaveTest = leaveTests.some(R.equals(testName))
+      if (shouldLeaveTest) {
+        debug('leaving test', testName)
+      } else {
+        debug('disabling test', testName)
+        node.update('it.skip' + node.source().substr(2))
+      }
+    }
+    // TODO: handle it.only and it.skip
+
+    // else if (isItOnly(node)) {
+    //   const testName = [getItsName(node)]
+    //   console.log('found it.only', testName)
+    //   // nothing to do
+    // } else if (isItSkip(node)) {
+    //   const testName = [getItsName(node)]
+    //   console.log('found it.skip', testName)
+    //   node.update('it.only' + node.source().substr(7))
+    // }
+  }
+
+  const output = falafel(source, onNode)
+  return output.toString()
+}
+
 module.exports = {
-  findTests
+  findTests,
+  skipTests
 }
