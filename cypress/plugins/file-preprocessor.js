@@ -1,11 +1,11 @@
 const browserify = require('@cypress/browserify-preprocessor')
 const itify = require('./itify')
 
-const onFilePreprocessor = pickTests => {
+const onFilePreprocessor = (config, pickTests) => {
   const options = {
     browserifyOptions: {
       extensions: ['.js'],
-      transform: itify(pickTests)
+      transform: itify(config, pickTests)
     }
   }
 
