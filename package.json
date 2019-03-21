@@ -3,7 +3,7 @@
   "version": "0.0.0-development",
   "description": "User space solution for picking Cypress tests to run",
   "private": false,
-  "main": "index.js",
+  "main": "src/index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "semantic-release": "semantic-release"
@@ -14,17 +14,22 @@
     "cypress-plugin",
     "cypress-preprocessor"
   ],
+  "files": [
+    "src"
+  ],
   "author": "Gleb Bahmutov <gleb.bahmutov@gmail.com>",
   "license": "MIT",
-  "devDependencies": {
+  "dependencies": {
     "@cypress/browserify-preprocessor": "2.0.0",
-    "cypress": "3.2.0",
     "debug": "4.1.1",
     "falafel": "2.1.0",
     "pluralize": "7.0.0",
+    "through": "2.3.8"
+  },
+  "devDependencies": {
+    "cypress": "3.2.0",
     "ramda": "0.26.1",
-    "through": "2.3.8",
-    "semantic-release": "^15.13.3"
+    "semantic-release": "15.13.3"
   },
   "repository": {
     "type": "git",

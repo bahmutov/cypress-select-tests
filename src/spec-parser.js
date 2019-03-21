@@ -1,5 +1,4 @@
 const falafel = require('falafel')
-const R = require('ramda')
 const debug = require('debug')('itify')
 
 const isTestBlock = name => node => {
@@ -98,6 +97,8 @@ const findTests = source => {
   return foundTestNames
 }
 
+const equals = x => y => String(x) === String(y)
+
 const skipTests = (source, leaveTests) => {
   const onNode = node => {
     // console.log(node)
@@ -109,7 +110,7 @@ const skipTests = (source, leaveTests) => {
       const testName = names.reverse()
       // console.log('found test', testName)
       // foundTestNames.push(testName)
-      const shouldLeaveTest = leaveTests.some(R.equals(testName))
+      const shouldLeaveTest = leaveTests.some(equals(testName))
       if (shouldLeaveTest) {
         debug('leaving test', testName)
       } else {

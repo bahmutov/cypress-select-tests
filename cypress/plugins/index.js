@@ -1,4 +1,4 @@
-const onFilePreprocessor = require('./file-preprocessor')
+const selectTests = require('../..')
 const R = require('ramda')
 
 /**
@@ -46,6 +46,5 @@ const pickTests = (filename, foundTests, cypressConfig) => {
 }
 
 module.exports = (on, config) => {
-  console.log('config', config)
-  on('file:preprocessor', onFilePreprocessor(config, pickTests))
+  on('file:preprocessor', selectTests(config, pickTests))
 }
