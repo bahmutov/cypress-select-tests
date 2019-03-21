@@ -1,5 +1,5 @@
 const falafel = require('falafel')
-const debug = require('debug')('itify')
+const debug = require('debug')('cypress-select-tests')
 
 const isTestBlock = name => node => {
   return (

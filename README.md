@@ -9,73 +9,25 @@
 [![standard][standard-image]][standard-url]
 [![renovate-app badge][renovate-badge]][renovate-app]
 
-See [cypress/plugins/index.js](cypress/plugins/index.js)
+## Use
 
-## Run
-
-```
-npm install
-npx cypress open
-```
-
-## Example
-
-Currently selecting spec files and tests using `fgrep` and `grep` strings similar to Mocha's
-
-For example to run just the tests that have "does" in their name
-
-```
-DEBUG=itify npx cypress run --env grep=does
-  itify Found 4 tests +1ms
-picking tests to run in file cypress/integration/spec.js
-  itify  - Example tests / works
-  itify  - Example tests / nested / does A
-  itify  - Example tests / nested / does B
-  itify  - Example tests / nested / does C
-  itify  +0ms
-  itify Will only run 3 tests +0ms
-  itify  - Example tests / nested / does A
-  itify  - Example tests / nested / does B
-  itify  - Example tests / nested / does C
-  itify  +0ms
-  itify disabling test [ 'Example tests', 'works' ] +2s
-  itify leaving test [ 'Example tests', 'nested', 'does A' ] +0ms
-  itify leaving test [ 'Example tests', 'nested', 'does B' ] +0ms
-  itify leaving test [ 'Example tests', 'nested', 'does C' ] +1ms
-```
-
-And out of 2 specs, only 3 tests in the "spec.js" are executed
-
-```
-  Example tests
-    - works
-    nested
-      ✓ does A
-      ✓ does B
-      ✓ does C
-
-
-  3 passing (74ms)
-  1 pending
-```
+_coming soon_
 
 ## Debugging
 
 To see additional debugging output run
 
 ```
-DEBUG=itify npx cypress open
+DEBUG=cypress-select-tests npx cypress open
 ```
 
 ### Small print
 
-Author: Gleb Bahmutov &lt;gleb.bahmutov@gmail.com&gt; &copy; 2018
+Author: Gleb Bahmutov &lt;gleb.bahmutov@gmail.com&gt; &copy; 2019
 
 - [@bahmutov](https://twitter.com/bahmutov)
 - [glebbahmutov.com](https://glebbahmutov.com)
 - [blog](https://glebbahmutov.com/blog)
-
-"Maniacal Witches Laugh Sound" by [Mike Koenig](http://soundbible.com/1129-Maniacal-Witches-Laugh.html), under license Attribution 3.0
 
 License: MIT - do anything with the code, but don't blame me if it does not work.
 
@@ -84,7 +36,7 @@ Support: if you find any problems with this module, email / tweet /
 
 ## MIT License
 
-Copyright (c) 2018 Gleb Bahmutov &lt;gleb.bahmutov@gmail.com&gt;
+Copyright (c) 2019 Gleb Bahmutov &lt;gleb.bahmutov@gmail.com&gt;
 
 Permission is hereby granted, free of charge, to any person
 obtaining a copy of this software and associated documentation

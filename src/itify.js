@@ -1,6 +1,6 @@
 'use strict'
 
-const debug = require('debug')('itify')
+const debug = require('debug')('cypress-select-tests')
 const through = require('through')
 const pluralize = require('pluralize')
 const specParser = require('./spec-parser')

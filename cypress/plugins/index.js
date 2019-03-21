@@ -1,5 +1,4 @@
 const selectTests = require('../..')
-const R = require('ramda')
 
 /**
  * Return only the names of the tests we want to run.
