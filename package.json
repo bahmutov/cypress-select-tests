@@ -1,7 +1,8 @@
 {
   "name": "cypress-select-tests",
   "version": "1.0.0",
-  "description": "",
+  "description": "Userspace solution for picking Cypress tests to run",
+  "private": true,
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
