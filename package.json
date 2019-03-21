@@ -1,11 +1,12 @@
 {
   "name": "cypress-select-tests",
-  "version": "1.0.0",
-  "description": "Userspace solution for picking Cypress tests to run",
+  "version": "0.0.0-development",
+  "description": "User space solution for picking Cypress tests to run",
   "private": false,
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "semantic-release": "semantic-release"
   },
   "keywords": [
     "cypress",
@@ -22,6 +23,11 @@
     "falafel": "2.1.0",
     "pluralize": "7.0.0",
     "ramda": "0.26.1",
-    "through": "2.3.8"
+    "through": "2.3.8",
+    "semantic-release": "^15.13.3"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/bahmutov/cypress-select-tests.git"
   }
 }
