@@ -36,6 +36,11 @@ const pickTests = (filename, foundTests, cypressConfig) => {
       return
     }
   }
+  if (grep) {
+    return foundTests.filter(testName =>
+      testName.some(part => part.includes(grep))
+    )
+  }
 
   return foundTests
 }
