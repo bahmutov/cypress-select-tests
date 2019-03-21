@@ -10,7 +10,7 @@ const formatTestName = parts => ' - ' + parts.join(' / ')
 const formatTestNames = foundTests =>
   foundTests.map(formatTestName).join('\n') + '\n'
 
-function process (pickTests, source) {
+function process (filename, pickTests, source) {
   // console.log('---source')
   // console.log(source)
   const foundTests = specParser.findTests(source)
@@ -21,7 +21,7 @@ function process (pickTests, source) {
   debug('Found %s', pluralize('test', foundTests.length, true))
   debug(formatTestNames(foundTests))
 
-  const testNamesToRun = pickTests(foundTests)
+  const testNamesToRun = pickTests(filename, foundTests)
   debug('Will only run %s', pluralize('test', testNamesToRun.length, true))
   debug(formatTestNames(testNamesToRun))
 
@@ -45,7 +45,7 @@ module.exports = function itify (pickTests) {
     }
 
     function onend () {
-      this.queue(process(pickTests, data))
+      this.queue(process(filename, pickTests, data))
       this.emit('end')
     }
 
