@@ -11,6 +11,11 @@
   "license": "ISC",
   "devDependencies": {
     "@cypress/browserify-preprocessor": "2.0.0",
-    "cypress": "3.2.0"
+    "cypress": "3.2.0",
+    "debug": "4.1.1",
+    "falafel": "2.1.0",
+    "pluralize": "7.0.0",
+    "ramda": "0.26.1",
+    "through": "2.3.8"
   }
 }

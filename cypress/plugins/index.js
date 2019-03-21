@@ -1,14 +1,9 @@
-const browserify = require('@cypress/browserify-preprocessor')
+const onFilePreprocessor = require('./file-preprocessor')
 
-module.exports = (on) => {
-  const options = {
-    browserifyOptions: {
-      extensions: ['.js'],
-      // plugin: [
-      //   []
-      // ]
-    }
-  }
+const pickTests = foundTests => {
+  return foundTests
+}
 
-  on('file:preprocessor', browserify(options))
+module.exports = on => {
+  on('file:preprocessor', onFilePreprocessor(pickTests))
 }
