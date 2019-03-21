@@ -11,7 +11,8 @@ jobs:
 workflows:
   build:
     jobs:
-      - cypress/run
+      - cypress/run:
+          command: npm test
       - release:
           requires:
             - cypress/run
