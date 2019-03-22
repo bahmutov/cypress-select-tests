@@ -5,7 +5,7 @@
   "private": false,
   "main": "src/index.js",
   "scripts": {
-    "test": "mocha --timeout 20000 --reporter spec test",
+    "test": "mocha --timeout 20000 --reporter spec 'test/*spec.js'",
     "semantic-release": "semantic-release"
   },
   "keywords": [
