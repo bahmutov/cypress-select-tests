@@ -15,7 +15,8 @@
     "cypress-preprocessor"
   ],
   "files": [
-    "src"
+    "src",
+    "grep.js"
   ],
   "author": "Gleb Bahmutov <gleb.bahmutov@gmail.com>",
   "license": "MIT",

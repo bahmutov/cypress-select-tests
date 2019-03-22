@@ -46,6 +46,32 @@ module.exports = (on, config) => {
 }
 ```
 
+Using `pickTests` allows you to implement your own test selection logic. All tests filtered out will be shown / counted as pending.
+
+## Mocha-like selection
+
+[Mocha](https://mochajs.org/) has `--fgrep` and `--grep` CLI arguments to select spec files and tests to run. This package provides imitation using strings. In your `cypress/plugins/index.js` use:
+
+```js
+const selectTestsWithGrep = require('cypress-select-tests/grep')
+module.exports = (on, config) => {
+  on('file:preprocessor', selectTestsWithGrep(config))
+}
+```
+
+Then open or run Cypress and use environment variables to pass strings to find. There are various ways to [pass environment variables](https://on.cypress.io/environment-variables), here is via CLI arguments:
+
+```shell
+ ## run tests with "works" in their full titles
+ $ npx cypress open --env grep=works
+ ## runs only specs with "foo" in their filename
+ $ npx cypress run --env fgrep=foo
+ ## runs only tests with "works" from specs with "foo"
+ $ npx cypress run --env fgrep=foo,grep=works
+ ## runs tests with "feature A" in the title
+ $ npx cypress run --env grep='feature A'
+ ```
+
 ## Examples
 
 - [cypress-select-tests-example](https://github.com/bahmutov/cypress-select-tests-example)
