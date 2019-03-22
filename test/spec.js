@@ -17,6 +17,12 @@ const pickTestInfo = R.compose(
   R.prop('tests')
 )
 
+const pickRunInfo = run => ({
+  stats: pickMainStatsFromRun(run),
+  spec: R.pick(['name', 'relative'], run.spec),
+  tests: pickTestInfo(run)
+})
+
 it('runs only tests with "does" in their name from spec.js', () => {
   return cypress
     .run({
@@ -77,7 +83,7 @@ it('runs no tests', () => {
     })
 })
 
-it.only('only runs tests in spec-2', () => {
+it('only runs tests in spec-2', () => {
   return cypress
     .run({
       env: {
@@ -94,14 +100,7 @@ it.only('only runs tests in spec-2', () => {
     .then(runs => {
       la(runs.length === 2, 'expected two specs', runs)
 
-      const info = R.map(
-        run => ({
-          stats: pickMainStatsFromRun(run),
-          spec: R.pick(['name', 'relative'], run.spec),
-          tests: pickTestInfo(run)
-        }),
-        runs
-      )
+      const info = R.map(pickRunInfo, runs)
       snapshot(info)
     })
 })
