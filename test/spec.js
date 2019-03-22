@@ -1,4 +1,5 @@
 // @ts-check
+require('mocha-banner').register()
 const R = require('ramda')
 const la = require('lazy-ass')
 const snapshot = require('snap-shot-it')
