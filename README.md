@@ -9,9 +9,46 @@
 [![standard][standard-image]][standard-url]
 [![renovate-app badge][renovate-badge]][renovate-app]
 
+## Install
+
+Assuming [Cypress](https://www.cypress.io) has been installed:
+
+```shell
+npm install --save-dev cypress-select-tests
+```
+
+### Warning ⚠️
+
+- this package assumes JavaScript specs
+- this package might conflict and/or overwrite other Cypress Browserify preprocessor settings
+
 ## Use
 
-_coming soon_
+In your `cypress/plugins/index.js` use this module as a file preprocessor
+
+```js
+const selectTests = require('cypress-select-tests')
+
+// return test names you want to run
+const pickTests = (filename, foundTests, cypressConfig) => {
+  // found tests will be names of the tests found in "filename" spec
+  // it is a list of names, each name an Array of strings
+  // ['suite 1', 'suite 2', ..., 'test name']
+
+  // return [] to skip ALL tests
+  // OR
+  // let's only run tests with "does" in the title
+  return foundTests.filter(fullTestName => fullTestName.join(' ').includes('does'))
+}
+
+module.exports = (on, config) => {
+  on('file:preprocessor', selectTests(config, pickTests))
+}
+```
+
+## Examples
+
+- [cypress-select-tests-example](https://github.com/bahmutov/cypress-select-tests-example)
 
 ## Debugging
 
