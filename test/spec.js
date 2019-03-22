@@ -46,9 +46,8 @@ it('runs only tests with "does" in their name from spec.js', () => {
         'main stats': pickMainStatsFromRun(run)
       })
 
-      const testInfo = R.project(['title', 'state'], run.tests)
       snapshot({
-        'test state': testInfo
+        'test state': pickTestInfo(run)
       })
     })
 })
@@ -70,15 +69,11 @@ it('runs no tests', () => {
     })
     .then(run => {
       snapshot({
-        'main stats': R.pick(
-          ['suites', 'tests', 'passes', 'pending', 'skipped', 'failures'],
-          run.stats
-        )
+        'main stats': pickMainStatsFromRun(run)
       })
 
-      const testInfo = R.project(['title', 'state'], run.tests)
       snapshot({
-        'test state': testInfo
+        'test state': pickTestInfo(run)
       })
     })
 })
