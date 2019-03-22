@@ -19,6 +19,9 @@
   ],
   "author": "Gleb Bahmutov <gleb.bahmutov@gmail.com>",
   "license": "MIT",
+  "peerDependencies": {
+    "cypress": "3"
+  },
   "dependencies": {
     "@cypress/browserify-preprocessor": "2.0.0",
     "debug": "4.1.1",
