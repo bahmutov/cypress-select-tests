@@ -75,6 +75,7 @@ Using `pickTests` allows you to implement your own test selection logic. All tes
 ## Examples
 
 - [cypress-select-tests-example](https://github.com/bahmutov/cypress-select-tests-example)
+- [cypress-example-recipes grep](https://github.com/cypress-io/cypress-example-recipes/tree/master/examples/preprocessors__grep)
 
 ## Debugging
 
