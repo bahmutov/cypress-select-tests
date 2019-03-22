@@ -22,32 +22,6 @@ npm install --save-dev cypress-select-tests
 - this package assumes JavaScript specs
 - this package might conflict and/or overwrite other Cypress Browserify preprocessor settings
 
-## Use
-
-In your `cypress/plugins/index.js` use this module as a file preprocessor
-
-```js
-const selectTests = require('cypress-select-tests')
-
-// return test names you want to run
-const pickTests = (filename, foundTests, cypressConfig) => {
-  // found tests will be names of the tests found in "filename" spec
-  // it is a list of names, each name an Array of strings
-  // ['suite 1', 'suite 2', ..., 'test name']
-
-  // return [] to skip ALL tests
-  // OR
-  // let's only run tests with "does" in the title
-  return foundTests.filter(fullTestName => fullTestName.join(' ').includes('does'))
-}
-
-module.exports = (on, config) => {
-  on('file:preprocessor', selectTests(config, pickTests))
-}
-```
-
-Using `pickTests` allows you to implement your own test selection logic. All tests filtered out will be shown / counted as pending.
-
 ## Mocha-like selection
 
 [Mocha](https://mochajs.org/) has `--fgrep` and `--grep` CLI arguments to select spec files and tests to run. This package provides imitation using strings. In your `cypress/plugins/index.js` use:
@@ -71,6 +45,32 @@ Then open or run Cypress and use environment variables to pass strings to find. 
  ## runs tests with "feature A" in the title
  $ npx cypress run --env grep='feature A'
  ```
+
+## Write your own selection logic
+
+In your `cypress/plugins/index.js` use this module as a file preprocessor and write your own `pickTests` function.
+
+```js
+const selectTests = require('cypress-select-tests')
+
+// return test names you want to run
+const pickTests = (filename, foundTests, cypressConfig) => {
+  // found tests will be names of the tests found in "filename" spec
+  // it is a list of names, each name an Array of strings
+  // ['suite 1', 'suite 2', ..., 'test name']
+
+  // return [] to skip ALL tests
+  // OR
+  // let's only run tests with "does" in the title
+  return foundTests.filter(fullTestName => fullTestName.join(' ').includes('does'))
+}
+
+module.exports = (on, config) => {
+  on('file:preprocessor', selectTests(config, pickTests))
+}
+```
+
+Using `pickTests` allows you to implement your own test selection logic. All tests filtered out will be shown / counted as pending.
 
 ## Examples
 
