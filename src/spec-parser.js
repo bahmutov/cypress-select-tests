@@ -1,6 +1,11 @@
 const falafel = require('falafel')
 const debug = require('debug')('cypress-select-tests')
 
+const acornOptions = {
+  ecmaVersion: 9,
+  sourceType: 'module'
+}
+
 const isTestBlock = name => node => {
   return (
     node.type === 'CallExpression' &&
@@ -92,7 +97,7 @@ const findTests = source => {
   }
 
   // ignore source output for now
-  falafel(source, onNode)
+  falafel(source, acornOptions, onNode)
 
   return foundTestNames
 }
@@ -131,7 +136,7 @@ const skipTests = (source, leaveTests) => {
     // }
   }
 
-  const output = falafel(source, onNode)
+  const output = falafel(source, acornOptions, onNode)
   return output.toString()
 }
 
