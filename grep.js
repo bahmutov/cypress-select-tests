@@ -9,8 +9,6 @@ const pickTests = (filename, foundTests, cypressConfig) => {
   // each test name is a list of strings
   // [suite name, suite name, ..., test name]
 
-  console.log('picking tests to run in file %s', filename)
-
   // we could use Cypress env variables to use same options as Mocha
   // see https://mochajs.org/
   //   --fgrep, -f Only run tests containing this string
@@ -21,18 +19,16 @@ const pickTests = (filename, foundTests, cypressConfig) => {
 
   const fgrep = cypressConfig.env.fgrep
   const grep = cypressConfig.env.grep // assume string for now, not regexp
-  if (!fgrep && !grep) {
-    // run all tests
-    return foundTests
-  }
 
   if (fgrep) {
+    console.log("\tJust tests with a name that contains: %s", fgrep)
     if (!filename.includes(fgrep)) {
-      console.log('spec filename %s not matching fgrep "%s"', filename, fgrep)
+      console.warn('\tTest filename %s did not match fgrep "%s"', filename, fgrep)
       return
     }
   }
   if (grep) {
+    console.log("\tJust tests tagged with: %s", grep)
     return foundTests.filter(testName =>
       testName.some(part => part.includes(grep))
     )
