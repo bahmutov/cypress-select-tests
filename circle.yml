@@ -16,3 +16,7 @@ workflows:
       - release:
           requires:
             - cypress/run
+          filters:
+            branches:
+              only:
+                - master
