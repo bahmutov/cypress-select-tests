@@ -1,0 +1,20 @@
+{
+  "extends": [
+    "config:base"
+  ],
+  "automerge": true,
+  "major": {
+    "automerge": false
+  },
+  "timezone": "America/New_York",
+  "schedule": [
+    "after 10pm and before 5am on every weekday",
+    "every weekend"
+  ],
+  "lockFileMaintenance": {
+    "enabled": true
+  },
+  "masterIssue": true,
+  "prHourlyLimit": 2,
+  "updateNotScheduled": false
+}
