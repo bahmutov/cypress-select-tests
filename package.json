@@ -37,7 +37,7 @@
     "mocha-banner": "1.1.2",
     "ramda": "0.26.1",
     "semantic-release": "15.13.19",
-    "snap-shot-it": "6.3.0"
+    "snap-shot-it": "6.3.5"
   },
   "repository": {
     "type": "git",
