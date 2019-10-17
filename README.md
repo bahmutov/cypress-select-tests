@@ -46,6 +46,8 @@ Then open or run Cypress and use environment variables to pass strings to find. 
  $ npx cypress run --env grep='feature A'
  ```
 
+The test picking function is available by itself in [src/grep-pick-tests.js](src/grep-pick-tests.js) file.
+
 ## Write your own selection logic
 
 In your `cypress/plugins/index.js` use this module as a file preprocessor and write your own `pickTests` function.
