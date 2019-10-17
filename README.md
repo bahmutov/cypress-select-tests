@@ -74,6 +74,28 @@ module.exports = (on, config) => {
 
 Using `pickTests` allows you to implement your own test selection logic. All tests filtered out will be shown / counted as pending.
 
+## Combine custom browserify with grep picker
+
+If you are adjusting Browserify options, and would like to use the above Mocha-like grep test picker, see [test/plugin-browserify-with-grep.js](test/plugin-browserify-with-grep.js) file. In essence, you want add the grep transform to the list of Browserify plugins. Something like
+
+```js
+const browserify = require('@cypress/browserify-preprocessor')
+// utility function to process source in browserify
+const itify = require('cypress-select-tests/src/itify')
+// actual picking tests based on environment variables in the config file
+const { grepPickTests } = require('cypress-select-tests/src/grep-pick-tests')
+
+module.exports = (on, config) => {
+  let customBrowserify
+
+  // get the browserify options, then push another transform
+  options.browserifyOptions.transform.push(itify(config, grepPickTests))
+  customBrowserify = browserify(options)
+
+  on('file:preprocessor', file => customBrowserify(file))
+}
+```
+
 ## Examples
 
 - [cypress-select-tests-example](https://github.com/bahmutov/cypress-select-tests-example)

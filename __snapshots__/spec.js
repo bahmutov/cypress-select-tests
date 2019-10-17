@@ -164,3 +164,50 @@ exports['runs only tests with "does" in their name from spec.js 2'] = {
     }
   ]
 }
+
+exports['combines custom browserify with grep picker 1'] = {
+  "main stats": {
+    "suites": 2,
+    "tests": 4,
+    "passes": 1,
+    "pending": 3,
+    "skipped": 0,
+    "failures": 0
+  }
+}
+
+exports['combines custom browserify with grep picker 2'] = {
+  "test state": [
+    {
+      "title": [
+        "Example tests",
+        "works"
+      ],
+      "state": "pending"
+    },
+    {
+      "title": [
+        "Example tests",
+        "nested",
+        "does A"
+      ],
+      "state": "pending"
+    },
+    {
+      "title": [
+        "Example tests",
+        "nested",
+        "does B"
+      ],
+      "state": "passed"
+    },
+    {
+      "title": [
+        "Example tests",
+        "nested",
+        "does C"
+      ],
+      "state": "pending"
+    }
+  ]
+}

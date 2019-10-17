@@ -99,3 +99,38 @@ it('only runs tests in spec-2', () => {
       snapshot(info)
     })
 })
+
+it('combines custom browserify with grep picker', () => {
+  return cypress
+    .run({
+      env: {
+        // should run only tests that have "does B" in their title
+        grep: 'does B'
+      },
+      config: {
+        video: false,
+        videoUploadOnPasses: false,
+        pluginsFile: path.join(__dirname, 'plugin-browserify-with-grep.js')
+      },
+      spec: 'cypress/integration/spec.js'
+    })
+    .then(R.prop('runs'))
+    .then(runs => {
+      la(runs.length === 1, 'expected single run', runs)
+      return runs[0]
+    })
+    .then(run => {
+      const mainStats = pickMainStatsFromRun(run)
+      const testState = pickTestInfo(run)
+
+      // should be 1 test passing, the rest pending
+      snapshot({
+        'main stats': mainStats
+      })
+
+      // only the test "does B" should pass
+      snapshot({
+        'test state': testState
+      })
+    })
+})
