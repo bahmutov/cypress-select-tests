@@ -33,7 +33,7 @@
   "devDependencies": {
     "cypress": "3.4.1",
     "lazy-ass": "1.6.0",
-    "mocha": "6.2.1",
+    "mocha": "6.2.2",
     "mocha-banner": "1.1.2",
     "ramda": "0.26.1",
     "semantic-release": "15.13.24",
