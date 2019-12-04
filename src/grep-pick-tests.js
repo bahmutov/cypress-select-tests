@@ -32,7 +32,7 @@ const grepPickTests = (filename, foundTests, cypressConfig) => {
   if (grep) {
     console.log('\tJust tests tagged with: %s', grep)
     return foundTests.filter(testName =>
-      testName.some(part => part.includes(grep))
+      testName.some(part => part && part.includes(grep))
     )
   }
 
