@@ -31,7 +31,7 @@
     "through": "2.3.8"
   },
   "devDependencies": {
-    "cypress": "3.8.0",
+    "cypress": "3.8.1",
     "lazy-ass": "1.6.0",
     "mocha": "6.2.2",
     "mocha-banner": "1.1.2",
