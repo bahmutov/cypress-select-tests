@@ -52,6 +52,37 @@ it('runs only tests with "does" in their name from spec.js', () => {
     })
 })
 
+it('runs tests without "does" in their name from spec.js with grep invert', () => {
+  return cypress
+    .run({
+      env: {
+        grep: 'does',
+        invert: 'true'
+      },
+      config: {
+        video: false,
+        videoUploadOnPasses: false,
+        pluginsFile: path.join(__dirname, 'plugin-does-grep.js')
+      },
+      spec: 'cypress/integration/spec.js'
+    })
+    .then(R.prop('runs'))
+    .then(runs => {
+      la(runs.length === 1, 'expected single run', runs)
+      return runs[0]
+    })
+    .then(run => {
+      // 1 pass without "does", 3 pending with "does"
+      snapshot({
+        'main stats': pickMainStatsFromRun(run)
+      })
+
+      snapshot({
+        'test state': pickTestInfo(run)
+      })
+    })
+})
+
 it('runs no tests', () => {
   return cypress
     .run({
@@ -96,6 +127,30 @@ it('only runs tests in spec-2', () => {
       la(runs.length === 2, 'expected two specs', runs)
 
       const info = R.map(pickRunInfo, runs)
+      snapshot(info)
+    })
+})
+
+it('runs tests except selected files with fgrep invert', () => {
+  return cypress
+    .run({
+      env: {
+        fgrep: '-2',
+        invert: 'true'
+      },
+      config: {
+        video: false,
+        videoUploadOnPasses: false,
+        pluginsFile: path.join(__dirname, 'plugin-does-grep.js')
+      },
+      spec: 'cypress/integration/*'
+    })
+    .then(R.prop('runs'))
+    .then(runs => {
+      la(runs.length === 2, 'expected two specs', runs)
+
+      const info = R.map(pickRunInfo, runs)
+      // only tests from cypress/integration/spec.js should run
       snapshot(info)
     })
 })
