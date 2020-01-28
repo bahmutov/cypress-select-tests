@@ -24,7 +24,7 @@ npm install --save-dev cypress-select-tests
 
 ## Mocha-like selection
 
-[Mocha](https://mochajs.org/) has `--fgrep` and `--grep` CLI arguments to select spec files and tests to run. This package provides imitation using strings. In your `cypress/plugins/index.js` use:
+[Mocha](https://mochajs.org/) has `--fgrep`, `--grep` and `--invert` CLI arguments to select spec files and tests to run. This package provides imitation using strings. In your `cypress/plugins/index.js` use:
 
 ```js
 const selectTestsWithGrep = require('cypress-select-tests/grep')
@@ -44,6 +44,10 @@ Then open or run Cypress and use environment variables to pass strings to find. 
  $ npx cypress run --env fgrep=foo,grep=works
  ## runs tests with "feature A" in the title
  $ npx cypress run --env grep='feature A'
+ ## runs only specs NOT with "foo" in their filename
+ $ npx cypress run --env fgrep=foo,invert=true
+ ## runs tests NOT with "feature A" in the title
+ $ npx cypress run --env grep='feature A',invert=true
  ```
 
 The test picking function is available by itself in [src/grep-pick-tests.js](src/grep-pick-tests.js) file.
