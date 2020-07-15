@@ -24,7 +24,7 @@
     "cypress": "3"
   },
   "dependencies": {
-    "@cypress/browserify-preprocessor": "2.2.4",
+    "@cypress/browserify-preprocessor": "3.0.1",
     "debug": "4.1.1",
     "falafel": "2.2.4",
     "pluralize": "8.0.0",
