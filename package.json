@@ -35,7 +35,7 @@
     "lazy-ass": "1.6.0",
     "mocha": "7.2.0",
     "mocha-banner": "1.1.2",
-    "ramda": "0.27.0",
+    "ramda": "0.27.1",
     "semantic-release": "15.14.0",
     "snap-shot-it": "7.9.3"
   },
