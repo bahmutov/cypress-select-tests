@@ -21,7 +21,7 @@
   "author": "Gleb Bahmutov <gleb.bahmutov@gmail.com>",
   "license": "MIT",
   "peerDependencies": {
-    "cypress": "3"
+    "cypress": "3 || 4"
   },
   "dependencies": {
     "@cypress/browserify-preprocessor": "2.2.4",
@@ -31,7 +31,7 @@
     "through": "2.3.8"
   },
   "devDependencies": {
-    "cypress": "3.8.3",
+    "cypress": "4.12.1",
     "lazy-ass": "1.6.0",
     "mocha": "7.2.0",
     "mocha-banner": "1.1.2",
