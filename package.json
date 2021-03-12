@@ -36,7 +36,7 @@
     "mocha": "7.2.0",
     "mocha-banner": "1.1.2",
     "ramda": "0.27.1",
-    "semantic-release": "15.14.0",
+    "semantic-release": "17.4.2",
     "snap-shot-it": "7.9.6"
   },
   "repository": {
