@@ -16,6 +16,8 @@ const isContext = isTestBlock('context')
 
 const isIt = isTestBlock('it')
 
+const isSpecify = isTestBlock('specify')
+
 const isItOnly = node => {
   return (
     node.type === 'CallExpression' &&
@@ -68,7 +70,7 @@ const findTests = source => {
   const onNode = node => {
     // console.log(node)
 
-    if (isIt(node)) {
+    if (isIt(node) || isSpecify(node)) {
       const names = [getItsName(node)]
       findSuites(node, names)
 
@@ -103,7 +105,7 @@ const skipTests = (source, leaveTests) => {
   const onNode = node => {
     // console.log(node)
 
-    if (isIt(node)) {
+    if (isIt(node) || isSpecify(node)) {
       const names = [getItsName(node)]
       findSuites(node, names)
       // we were searching from inside out, thus need to revert the names
@@ -115,6 +117,9 @@ const skipTests = (source, leaveTests) => {
         debug('leaving test', testName)
       } else {
         debug('disabling test', testName)
+        if (isSpecify(node)) {
+          return node.update('specify.skip' + node.source().substr(7))
+        }
         node.update('it.skip' + node.source().substr(2))
       }
     }
