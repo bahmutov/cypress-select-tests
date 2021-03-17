@@ -21,22 +21,22 @@
   "author": "Gleb Bahmutov <gleb.bahmutov@gmail.com>",
   "license": "MIT",
   "peerDependencies": {
-    "cypress": "3 || 5"
+    "cypress": "3 || 5 || 6"
   },
   "dependencies": {
-    "@cypress/browserify-preprocessor": "2.2.4",
+    "@cypress/browserify-preprocessor": "3.0.1",
     "debug": "4.3.1",
     "falafel": "2.2.4",
     "pluralize": "8.0.0",
     "through": "2.3.8"
   },
   "devDependencies": {
-    "cypress": "5.6.0",
+    "cypress": "6.7.1",
     "lazy-ass": "1.6.0",
-    "mocha": "7.2.0",
+    "mocha": "8.3.2",
     "mocha-banner": "1.1.2",
     "ramda": "0.27.1",
-    "semantic-release": "15.14.0",
+    "semantic-release": "17.4.2",
     "snap-shot-it": "7.9.6"
   },
   "repository": {
