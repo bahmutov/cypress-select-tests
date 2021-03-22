@@ -15,6 +15,6 @@ describe('Example tests', () => {
     it('does B', () => {})
 
     // @tags foo,bar
-    it('does C', () => {})
+    specify('does C', () => {})
   })
 })
