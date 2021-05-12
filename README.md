@@ -1,5 +1,11 @@
 # cypress-select-tests
 
+## DEPRECATED
+
+You probably want to use [cypress-grep](https://github.com/bahmutov/cypress-grep) instead: no TypeScript or JavaScript parsing problems.
+
+## OLD README
+
 > User space solution for picking Cypress tests to run
 
 [![NPM][npm-icon]][npm-url]
